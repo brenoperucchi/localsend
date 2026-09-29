@@ -52,11 +52,9 @@ Future<void> initTray() async {
       ),
     ];
     await tm.trayManager.setContextMenu(tm.Menu(items: items));
-    // No Linux implementation for setToolTip available as of tray_manager 0.2.2
-    // https://pub.dev/packages/tray_manager#api
-    if (!checkPlatform([TargetPlatform.linux])) {
-      await tm.trayManager.setToolTip(t.appName);
-    }
+    // On Linux, StatusNotifierItem hosts show this as the tray tooltip;
+    // without it they fall back to the raw id (org.localsend.localsend_app).
+    await tm.trayManager.setToolTip(t.appName);
   } catch (e) {
     _logger.warning('Failed to init tray', e);
   }
