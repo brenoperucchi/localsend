@@ -85,6 +85,12 @@ dev_dependencies:
   test: ^1.30.0
 
 dependency_overrides:
+  tray_manager:
+    # 0.5.3 plus a Linux setToolTip handler (app_indicator_set_title)
+    git:
+      url: https://github.com/brenoperucchi/tray_manager.git
+      ref: fix/linux-tooltip-0.5.3
+      path: packages/tray_manager
   device_apps:
     # Migrate to another maintained package to fetch installed apps on Android
     git:
